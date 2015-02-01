@@ -43,16 +43,18 @@ server.post('/listeners', function (req, res) {
   if (req.body.action === 'opened' || req.body.action === 'updated') {
   	console.log("pullrequest", req.body.pull_request);
     if (req.body.pull_request.head.user.login === req.body.pull_request.base.ref) {
-      var number = req.body.pull_request.number;
-      var query = 'https://api.github.com/repos/codingfitness/codingfitness/pulls/'+number+'?client_id='+var1+'&client_secret='+var2;
+      var url = req.body.pull_request.url;
+      var query = url+'/merge?client_id='+var1+'&client_secret='+var2;
       console.log("query", query);
       var options = {
+      	method: 'PUT',
         url: query,
         headers: {
           'User-Agent': 'mergeserver'
-        }
+        },
+        body: "Please merge"
       };
-      request.get(options, function (error, response, body) {
+      request(options, function (error, response, body) {
       	if (error) {
       	  console.log("error", error);
       	}
