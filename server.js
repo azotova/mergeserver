@@ -49,7 +49,7 @@ server.post('/listeners', function (req, res) {
       var options = {
         url: query,
         headers: {
-          'User-Agent': 'azotova'
+          'User-Agent': 'mergeserver'
         }
       };
       request.put(options, function (error, response, body) {
