@@ -16,7 +16,6 @@ var token;
 
 server.get('/listeners', function (req, res) {
   var code = req.query.code;
-  console.log("numbers", var1, var2, code);
   var options = {
   	method: 'POST',
   	uri: 'https://github.com/login/oauth/access_token',
@@ -33,7 +32,7 @@ server.get('/listeners', function (req, res) {
     if (error) {
       console.log('post request failed:', error);
     }
-    console.log('Server responded with:', body);
+    //console.log('Server responded with:', body);
     token = body.slice(body.indexOf('=') + 1, body.indexOf('&'));
   });
 });
@@ -41,7 +40,7 @@ server.get('/listeners', function (req, res) {
 server.post('/listeners', function (req, res) {
   res.sendStatus(201);
   if (req.body.action === 'opened' || req.body.action === 'updated') {
-  	console.log("pullrequest", req.body.pull_request);
+  	// console.log("pullrequest", req.body.pull_request);
     if (req.body.pull_request.head.user.login === req.body.pull_request.base.ref) {
       var url = req.body.pull_request.url;
       var query = url+'/merge?access_token=' + token;
@@ -58,7 +57,7 @@ server.post('/listeners', function (req, res) {
       	  console.log("error", error);
       	}
   	    console.log("response", response.statusCode);
-  	    console.log("responseTotal", response);
+  	    //console.log("responseTotal", response);
       });
     } 
   }
