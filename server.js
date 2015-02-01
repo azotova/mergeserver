@@ -65,7 +65,7 @@ server.post('/listeners', function (req, res) {
   }
 });
 
-// server.use(express.static(__dirname));
+server.use(express.static(__dirname));
 
 console.log('Listening on port' + port);
 server.listen(port);
