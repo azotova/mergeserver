@@ -36,7 +36,6 @@ server.get('/listeners', function (req, res) {
     console.log('Server responded with:', body);
     console.log('responseToCheck', response);
 
-    )
   });
 })
 
