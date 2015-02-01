@@ -1,0 +1,10 @@
+{
+  "name": "mergeServer",
+  "version": "0.0.1",
+  "main": "server.js",
+  "author": "azotova",
+  "dependencies": {
+    "body-parser": "^1.10.2",
+    "express": "^4.11.1"
+  }
+}
