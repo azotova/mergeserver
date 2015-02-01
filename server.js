@@ -19,7 +19,13 @@ server.post('/listeners', function (req, res) {
       var number = req.body.pull_request.number;
       var query = 'https://api.github.com/repos/codingfitness/codingfitness/pulls/'+number+'/merge';
       console.log("query", query);
-      request.put(query, function (error, response, body) {
+      var options = {
+        url: query,
+        headers: {
+          'User-Agent': 'azotova'
+        }
+      };
+      request.put(options, function (error, response, body) {
       	if (error) {
       	  console.log("error", error);
       	}
