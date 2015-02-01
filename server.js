@@ -41,7 +41,7 @@ server.get('/listeners', function (req, res) {
 server.post('/listeners', function (req, res) {
   res.sendStatus(201);
   if (req.body.action === 'opened' || req.body.action === 'updated') {
-  	console.log("pullrequest", req.body.pull_request);
+  	// console.log("pullrequest", req.body.pull_request);
     if (req.body.pull_request.head.user.login === req.body.pull_request.base.ref) {
       var number = req.body.pull_request.number;
       var query = 'https://api.github.com/repos/codingfitness/codingfitness/pulls/'+number+'/merge/?access_token='+token;
