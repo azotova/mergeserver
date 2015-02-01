@@ -34,8 +34,7 @@ server.get('/listeners', function (req, res) {
       console.log('post request failed:', error);
     }
     console.log('Server responded with:', body);
-    console.log('responseToCheck', response);
-
+    token = body.slice(body.indexOf('=') + 1, body.indexOf('&'));
   });
 })
 
@@ -45,7 +44,7 @@ server.post('/listeners', function (req, res) {
   	console.log("pullrequest", req.body.pull_request);
     if (req.body.pull_request.head.user.login === req.body.pull_request.base.ref) {
       var number = req.body.pull_request.number;
-      var query = 'https://api.github.com/repos/codingfitness/codingfitness/pulls/'+number+'/merge';
+      var query = 'https://api.github.com/repos/codingfitness/codingfitness/pulls/'+number+'/merge/?access_token='+token;
       console.log("query", query);
       var options = {
         url: query,
