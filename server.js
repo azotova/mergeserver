@@ -10,6 +10,9 @@ var server = express();
 
 server.use(parser.json());
 
+server.get('/listeners', function (req, res) {
+  console.log("reqGet", req);
+})
 
 server.post('/listeners', function (req, res) {
   res.sendStatus(201);
@@ -35,6 +38,8 @@ server.post('/listeners', function (req, res) {
     } 
   }
 });
+
+server.use(express.static(__dirname));
 
 console.log('Listening on port' + port);
 server.listen(port);
