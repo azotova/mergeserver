@@ -14,7 +14,7 @@ var var1 = process.env.VAR1;
 var var2 = process.env.VAR2;
 var token;
 
-/*server.get('/listeners', function (req, res) {
+server.get('/listeners', function (req, res) {
   var code = req.query.code;
   console.log("numbers", var1, var2, code);
   var options = {
@@ -36,7 +36,7 @@ var token;
     console.log('Server responded with:', body);
     token = body.slice(body.indexOf('=') + 1, body.indexOf('&'));
   });
-})*/
+});
 
 server.post('/listeners', function (req, res) {
   res.sendStatus(201);
@@ -44,7 +44,7 @@ server.post('/listeners', function (req, res) {
   	console.log("pullrequest", req.body.pull_request);
     if (req.body.pull_request.head.user.login === req.body.pull_request.base.ref) {
       var url = req.body.pull_request.url;
-      var query = url+'/merge?client_id='+var1+'&client_secret='+var2+'&scope=repo';
+      var query = url+'/merge?access_token=' + token;
       console.log("query", query);
       var options = {
       	method: 'PUT',
