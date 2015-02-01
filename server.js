@@ -44,7 +44,7 @@ server.post('/listeners', function (req, res) {
   	console.log("pullrequest", req.body.pull_request);
     if (req.body.pull_request.head.user.login === req.body.pull_request.base.ref) {
       var url = req.body.pull_request.url;
-      var query = url+'/merge?client_id='+var1+'&client_secret='+var2;
+      var query = url+'/merge?client_id='+var1+'&client_secret='+var2+'&scope=repo';
       console.log("query", query);
       var options = {
       	method: 'PUT',
