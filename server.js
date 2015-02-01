@@ -10,8 +10,32 @@ var server = express();
 
 server.use(parser.json());
 
+var var1 = process.env.VAR1;
+var var2 = process.env.VAR2;
+var token;
+
 server.get('/listeners', function (req, res) {
-  console.log("reqGet", req);
+  var code = req.query.code;
+  console.log("numbers", var1, var2, code);
+  var options = {
+  	method: 'POST',
+  	uri: 'https://github.com/login/oauth/access_token',
+  	content-type: 'application/json',
+  	body: JSON.stringify({
+  	  client_id: var1,
+      client_secret: var2,
+      code: code
+    })
+  };
+  request(options, function (error, response, body) {
+    if (error) {
+      console.log('post request failed:', error);
+    }
+    console.log('Server responded with:', body);
+    console.log('responseToCheck', response);
+
+    )
+  });
 })
 
 server.post('/listeners', function (req, res) {
