@@ -50,7 +50,8 @@ server.post('/listeners', function (req, res) {
         url: query,
         headers: {
           'User-Agent': 'mergeserver'
-        }
+        },
+        body: JSON.stringify("Please merge")
       };
       request.put(options, function (error, response, body) {
       	if (error) {
