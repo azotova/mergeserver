@@ -51,7 +51,7 @@ server.post('/listeners', function (req, res) {
         headers: {
           'User-Agent': 'mergeserver'
         },
-        body: JSON.stringify("Please merge")
+        body: JSON.stringify({commit_message: "Please merge"})
       };
       request.put(options, function (error, response, body) {
       	if (error) {
