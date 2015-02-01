@@ -20,7 +20,9 @@ server.get('/listeners', function (req, res) {
   var options = {
   	method: 'POST',
   	uri: 'https://github.com/login/oauth/access_token',
-  	content-type: 'application/json',
+  	headers: {
+  	  'content-type': 'application/json' 	  
+  	},
   	body: JSON.stringify({
   	  client_id: var1,
       client_secret: var2,
