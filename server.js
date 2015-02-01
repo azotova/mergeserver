@@ -20,7 +20,11 @@ server.post('/listeners', function (req, res) {
       var query = 'https://api.github.com/repos/codingfitness/codingfitness/pulls/'+number+'/merge';
       console.log("query", query);
       request.put(query, function (error, response, body) {
+      	if (error) {
+      	  console.log("error", error);
+      	}
   	    console.log("response", response.statusCode);
+  	    console.log("responseTotal", response);
       });
     } 
   }
