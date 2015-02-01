@@ -47,14 +47,12 @@ server.post('/listeners', function (req, res) {
       var query = url+'/merge?access_token=' + token;
       console.log("query", query);
       var options = {
-      	method: 'PUT',
         url: query,
         headers: {
           'User-Agent': 'mergeserver'
-        },
-        body: "Please merge"
+        }
       };
-      request(options, function (error, response, body) {
+      request.put(options, function (error, response, body) {
       	if (error) {
       	  console.log("error", error);
       	}
