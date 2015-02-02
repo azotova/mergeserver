@@ -90,15 +90,17 @@ server.post('/branches', function (req, res) {
   var newref = 'refs/heads/'+newuser;
   var newsha = sha1(newuser);
   console.log("newdata", newref, newsha);
-  var url = 'https://api.github.com/repos/codingfitness/codingfitness/git/refs' + '?access_token=' + token;
+  var url = 'https://api.github.com/repos/codingfitness/codingfitness/git/refs' + '?access_token=' + token + '&ref=' + newref + '&sha=' + newsha;
   var options = {
     url: url,
     headers: {
       'User-Agent': 'mergeserver'
     },
     method: 'POST',
-    ref: newref,
-    sha: newsha
+    body: JSON.stringify({
+      "ref": "refs/heads/featureA",
+      "sha": "aa218f56b14c9653891f9e74264a383fa43fefbd"
+    })
   };
   
   request(options, function (error, response, body) {
