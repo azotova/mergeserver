@@ -40,12 +40,13 @@ server.get('/listeners', function (req, res) {
 server.get('/branches', function (req, res) {
   var url = 'https://api.github.com/repos/codingfitness/codingfitness/git/refs'
   request.get(url, function (error, response, body) {
-  if (error) {
-    console.log("error", error);
-  }
-  if (!error && response.statusCode == 200) {
-    console.log("showrefs", body);
-  })
+    if (error) {
+      console.log("error", error);
+    }
+    if (!error && response.statusCode == 200) {
+      console.log("showrefs", body);
+    })
+  });  
 });
 
 server.post('/listeners', function (req, res) {
