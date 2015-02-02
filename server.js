@@ -88,9 +88,11 @@ server.post('/branches', function (req, res) {
   console.log("branches", req.body);
   var newuser = req.body.forkee.owner.login;
   var newref = 'refs/heads/'+newuser;
+  var oldref = 'refs/heads/master';
+  var oldsha = 'fde1dc064adcae03946f75059c40b8da2175c571';
   var newsha = sha1(newuser);
   console.log("newdata", newref, newsha);
-  var url = 'https://api.github.com/repos/codingfitness/codingfitness/git/refs' + '?access_token=' + token + '&ref=' + newref + '&sha=' + newsha;
+  var url = 'https://api.github.com/repos/codingfitness/codingfitness/git/refs' + '?access_token=' + token + '&ref=' + oldref + '&sha=' + oldsha;
   var options = {
     url: url,
     headers: {
