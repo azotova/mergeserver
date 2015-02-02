@@ -6,6 +6,7 @@
   "dependencies": {
     "body-parser": "^1.10.2",
     "express": "^4.11.1",
-    "request": "^2.51.0"
+    "request": "^2.51.0",
+    "sha1": "^1.1.0"
   }
 }

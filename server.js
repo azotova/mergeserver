@@ -2,6 +2,7 @@ var express = require('express');
 
 var parser = require('body-parser');
 var request = require('request');
+var sha1 = require('sha1');
 
 var port = process.env.PORT || 3000;
 
@@ -42,9 +43,9 @@ server.get('/branches', function (req, res) {
   var url = 'https://api.github.com/repos/codingfitness/codingfitness/git/refs' + '?access_token=' + token;
   var options = {
     url: url,
-        headers: {
-          'User-Agent': 'mergeserver'
-        },
+    headers: {
+      'User-Agent': 'mergeserver'
+    }
   };
   request(options, function (error, response, body) {
     if (error) {
@@ -85,28 +86,30 @@ server.post('/listeners', function (req, res) {
 server.post('/branches', function (req, res) {
   res.sendStatus(201);
   console.log("branches", req.body);
-  // if (req.body.action === 'opened' || req.body.action === 'updated') {
-  //   // console.log("pullrequest", req.body.pull_request);
-  //   if (req.body.pull_request.head.user.login === req.body.pull_request.base.ref) {
-  //     var url = req.body.pull_request.url;
-  //     var query = url+'/merge?access_token=' + token;
-  //     console.log("query", query);
-  //     var options = {
-  //       url: query,
-  //       headers: {
-  //         'User-Agent': 'mergeserver'
-  //       },
-  //       body: JSON.stringify({commit_message: "Please merge"})
-  //     };
-  //     request.put(options, function (error, response, body) {
-  //       if (error) {
-  //         console.log("error", error);
-  //       }
-  //       console.log("response", response.statusCode);
-  //       //console.log("responseTotal", response);
-  //     });
-  //   } 
-  // }
+  var newuser = req.body.forkee.owner.login;
+  var newref = 'refs/heads/'+newuser;
+  var newsha = sha1(newuser);
+  var url = 'https://api.github.com/repos/codingfitness/codingfitness/git/refs' + '?access_token=' + token;
+  var options = {
+    url: url,
+    headers: {
+      'User-Agent': 'mergeserver'
+    },
+    method: 'POST',
+    body: JSON.stringify({
+      'ref': newref,
+      'sha': newsha
+    })
+  };
+  
+  request(options, function (error, response, body) {
+    if (error) {
+      console.log("error", error);
+    }
+    console.log("response", response.statusCode);
+    console.log("responseTotal", response);
+  });
+
 });
 
 
