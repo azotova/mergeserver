@@ -98,8 +98,8 @@ server.post('/branches', function (req, res) {
     },
     method: 'POST',
     body: JSON.stringify({
-      "ref": "refs/heads/featureA",
-      "sha": "aa218f56b14c9653891f9e74264a383fa43fefbd"
+      "ref": newref,
+      "sha": newsha
     })
   };
   
