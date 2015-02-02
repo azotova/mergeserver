@@ -99,7 +99,7 @@ server.post('/branches', function (req, res) {
       'User-Agent': 'mergeserver',
       'content-type': 'x-www-form-urlencoded'
     },
-    method: 'POST'
+    method: 'POST',
     body: JSON.stringify({
       ref: newref,
       sha: newsha
