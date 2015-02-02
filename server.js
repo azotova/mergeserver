@@ -40,7 +40,13 @@ server.get('/listeners', function (req, res) {
 server.get('/branches', function (req, res) {
   console.log('get received');
   var url = 'https://api.github.com/repos/codingfitness/codingfitness/git/refs' + '?access_token=' + token;
-  request(url, function (error, response, body) {
+  var options = {
+    url: url,
+        headers: {
+          'User-Agent': 'mergeserver'
+        },
+  };
+  request(options, function (error, response, body) {
     if (error) {
       console.log("error", error);
     } else {
