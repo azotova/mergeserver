@@ -45,7 +45,7 @@ server.get('/branches', function (req, res) {
     }
     if (!error && response.statusCode == 200) {
       console.log("showrefs", body);
-    })
+    }
   });  
 });
 
