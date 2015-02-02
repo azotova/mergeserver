@@ -92,17 +92,18 @@ server.post('/branches', function (req, res) {
   var oldsha = 'fde1dc064adcae03946f75059c40b8da2175c571';
   var newsha = sha1(newuser);
   console.log("newdata", newref, newsha);
-  var url = 'https://api.github.com/repos/codingfitness/codingfitness/git/refs' + '?access_token=' + token + '&ref=' + oldref + '&sha=' + oldsha;
+  var url = 'https://api.github.com/repos/codingfitness/codingfitness/git/refs' + '?access_token=' + token + '&ref=' + newref + '&sha=' + newsha;
   var options = {
     url: url,
     headers: {
-      'User-Agent': 'mergeserver'
+      'User-Agent': 'mergeserver',
+      'content-type': 'x-www-form-urlencoded'
     },
-    method: 'POST',
-    body: JSON.stringify({
-      ref: newref,
-      sha: newsha
-    })
+    method: 'POST'
+    // body: JSON.stringify({
+    //   ref: newref,
+    //   sha: newsha
+    // })
   };
   
   request(options, function (error, response, body) {
