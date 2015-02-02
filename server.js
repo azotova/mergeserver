@@ -100,10 +100,10 @@ server.post('/branches', function (req, res) {
       'content-type': 'x-www-form-urlencoded'
     },
     method: 'POST'
-    // body: JSON.stringify({
-    //   ref: newref,
-    //   sha: newsha
-    // })
+    body: JSON.stringify({
+      ref: newref,
+      sha: newsha
+    })
   };
   
   request(options, function (error, response, body) {
