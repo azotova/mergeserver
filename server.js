@@ -82,6 +82,34 @@ server.post('/listeners', function (req, res) {
   }
 });
 
+server.post('/branches', function (req, res) {
+  res.sendStatus(201);
+  console.log("branches", req.body);
+  // if (req.body.action === 'opened' || req.body.action === 'updated') {
+  //   // console.log("pullrequest", req.body.pull_request);
+  //   if (req.body.pull_request.head.user.login === req.body.pull_request.base.ref) {
+  //     var url = req.body.pull_request.url;
+  //     var query = url+'/merge?access_token=' + token;
+  //     console.log("query", query);
+  //     var options = {
+  //       url: query,
+  //       headers: {
+  //         'User-Agent': 'mergeserver'
+  //       },
+  //       body: JSON.stringify({commit_message: "Please merge"})
+  //     };
+  //     request.put(options, function (error, response, body) {
+  //       if (error) {
+  //         console.log("error", error);
+  //       }
+  //       console.log("response", response.statusCode);
+  //       //console.log("responseTotal", response);
+  //     });
+  //   } 
+  // }
+});
+
+
 server.use(express.static(__dirname));
 
 console.log('Listening on port' + port);
