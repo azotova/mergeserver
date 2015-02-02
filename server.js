@@ -94,14 +94,11 @@ server.post('/branches', function (req, res) {
   var options = {
     url: url,
     headers: {
-      'User-Agent': 'mergeserver',
-      'content-type': 'application/json'
+      'User-Agent': 'mergeserver'
     },
     method: 'POST',
-    body: JSON.stringify({
-      'ref': newref,
-      'sha': newsha
-    })
+    ref: newref,
+    sha: newsha
   };
   
   request(options, function (error, response, body) {
