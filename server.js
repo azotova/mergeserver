@@ -40,13 +40,13 @@ server.get('/listeners', function (req, res) {
 server.get('/branches', function (req, res) {
   console.log('get received');
   var url = 'https://api.github.com/repos/codingfitness/codingfitness/git/refs' + '?access_token=' + token;
-  request.get(url, function (error, response, body) {
+  request(url, function (error, response, body) {
     if (error) {
       console.log("error", error);
-    }
-    if (!error && response.statusCode == 200) {
+    } else {
       console.log("showrefs", body);
     }
+    console.log("all resp", response);
   });  
 });
 
