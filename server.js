@@ -38,7 +38,8 @@ server.get('/listeners', function (req, res) {
 });
 
 server.get('/branches', function (req, res) {
-  var url = 'https://api.github.com/repos/codingfitness/codingfitness/git/refs'
+  console.log('get received');
+  var url = 'https://api.github.com/repos/codingfitness/codingfitness/git/refs' + '?access_token=' + token;
   request.get(url, function (error, response, body) {
     if (error) {
       console.log("error", error);
